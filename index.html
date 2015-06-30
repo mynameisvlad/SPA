@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html ng-app="store" lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <title>SPA</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body ng-controller="StoreController as store">
+    <p id="site_name">Українські інтернет магазини</p>
+    <div id="main_page">
+        <div id="universal_category" ng-click="setCurrentCategory('Універсальні магазини')">Універсальні</div>
+        <div id="product_category" ng-click="setCurrentCategory('Продуктові магазини')">Продуктові</div>
+        <div id="furniture_category" ng-click="setCurrentCategory('Мебельні магазини')">Мебельні</div>
+        <button id="best" ng-click="setCurrentCategory('theBest')"></button>
+        <div id="shop">
+                <p id="all_shop" ng-repeat="magazine in store.magazine | filter:{category:currentCategory}">
+                    <a href="{{magazine.href}}" target="_blank">{{magazine.name}}</a>
+                    <span ng-hide="showPhone">{{magazine.phone}}</span>
+                    <button id="save" ng-click="getChosenMagazine(magazine)" ng-show="magazine.showSave"></button>
+                    <div id="map"></div>
+                </p>
+          <div id="create_div">  <form  ng-submit="createShop(shop)" ng-show="showCreate">
+                <input type="text" id="ShopName" ng-model="shop.name" placeholder="Назва">
+                <input type="text" id="ShopURL" ng-model="shop.href" placeholder="Посилання">
+                <button type="submit" id="create">Додати</button>
+            </form> </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
