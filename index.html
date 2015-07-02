@@ -17,7 +17,7 @@
                     <a href="{{magazine.href}}" target="_blank">{{magazine.name}}</a>
                     <span ng-hide="showPhone">{{magazine.phone}}</span>
                     <button id="save" ng-click="getChosenMagazine(magazine)" ng-show="magazine.showSave"></button>
-                    <div id="map"></div>
+                    <button id="remove" ng-click="removeChosenShop(magazine)" ng-show="showRemove">Видалити</button>
                 </p>
           <div id="create_div">  <form  ng-submit="createShop(shop)" ng-show="showCreate">
                 <input type="text" id="ShopName" ng-model="shop.name" placeholder="Назва">

@@ -21,25 +21,26 @@
     this.magazine = $scope.shops;
 
     $scope.currentCategory = null;
-    $scope.canSave = true;
     $scope.canLink = true;
     $scope.showPhone = true;
     $scope.showCreate = false;
+    $scope.showRemove = false;
 
     function setCurrentCategory(category) {
         $scope.currentCategory = category;
         $scope.showCreate=true;
         if (category == 'theBest') {
-            $scope.canSave = false;
             $scope.canLink = false;
             $scope.showPhone = false;
             $scope.showCreate = false;
+            $scope.showRemove = true;
         }
         else {
-            $scope.canSave = true;
             $scope.canLink = true;
             $scope.showPhone = true;
+            $scope.showRemove = false;
         }
+        return $scope.currentCategory;
     }
 
     $scope.setCurrentCategory = setCurrentCategory;
@@ -52,6 +53,23 @@
     }
 
     $scope.getChosenMagazine = getChosenMagazine;
+
+    function removeChosenShop(shop) {
+        for (var i = 0; i < $scope.shops.length; i++) {
+            if (shop == $scope.shops[i]) {
+                $scope.shops.splice(i, 1);
+                return 0;
+            } else
+            if (shop.name == $scope.shops[i].name)
+            {
+                $scope.shops[i].showSave = true;
+            }
+
+        }
+
+    }
+
+    $scope.removeChosenShop = removeChosenShop;
 
     function resetCreateForm() {
         $scope.shop = {
